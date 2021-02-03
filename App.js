@@ -84,28 +84,30 @@ const App: () => React$Node = () => {
           <View key={indexRow} style={styles.rowTable}>
             {row.map((col, indexCol) => {
               return (
-                <Button
-                  key={`${indexRow} ${indexCol}`}
-                  onPress={() => {
-                    pressCell(indexRow, indexCol);
-                  }}
-                  title={table[indexRow][indexCol] || '-'}
-                />
+                <View style={styles.cell}>
+                  <Button
+                    key={`${indexRow} ${indexCol}`}
+                    onPress={() => {
+                      pressCell(indexRow, indexCol);
+                    }}
+                    title={table[indexRow][indexCol] || '-'}
+                  />
+                </View>
               );
             })}
           </View>
         );
       })}
-      <Button
-        onPress={() => {
-          setTable(initTable);
-          setWinner(false);
-          // pressCell(indexRow, indexCol);
-        }}
-        title={'restart'}
-      />
-
-      {/* ); */}
+      <View style={styles.restart}>
+        <Button
+          onPress={() => {
+            setTable(initTable);
+            setWinner(false);
+            // pressCell(indexRow, indexCol);
+          }}
+          title={'restart'}
+        />
+      </View>
     </View>
   );
 };
@@ -120,9 +122,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   cell: {
-    height: 20,
+    height: 30,
     width: 30,
     margin: 10,
+  },
+  restart: {
+    margin: 50,
   },
 });
 
