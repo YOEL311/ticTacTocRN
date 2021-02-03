@@ -42,15 +42,16 @@ const App: () => React$Node = () => {
 
   React.useEffect(() => {
     for (let i = 0; i < 3; i++) {
-
       const first = table[i][0];
       if (first !== null && first === table[i][1] && first === table[i][2]) {
         setWinner(true);
+        break;
       }
 
       const firstR = table[0][i];
       if (firstR !== null && firstR === table[1][i] && firstR === table[2][i]) {
         setWinner(true);
+        break;
       }
 
       const firstE = table[1][1];
@@ -60,6 +61,7 @@ const App: () => React$Node = () => {
         (firstE === table[2][0] && firstE === table[0][2])
       ) {
         setWinner(true);
+        break;
       }
     }
 
