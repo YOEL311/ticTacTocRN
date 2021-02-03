@@ -12,11 +12,12 @@ import {StyleSheet, View, Button, Text} from 'react-native';
 // import Toast from 'react-native-simple-toast';
 
 const App: () => React$Node = () => {
-  const initTable = {
-    0: [null, null, null],
-    1: [null, null, null],
-    2: [null, null, null],
-  };
+  const initTable = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ];
+
   const simple = {
     null: '-',
     true: '*',
@@ -34,9 +35,9 @@ const App: () => React$Node = () => {
     }
     if (table[row][col] !== null) return;
 
-    const newRow = [...table[row]];
-    newRow[col] = simple[queue];
-    setTable({...table, [row]: newRow});
+    const newTable = [...table];
+    newTable[row][col] = simple[queue];
+    setTable(newTable);
     setQueue((old) => !old);
   };
 
@@ -78,10 +79,10 @@ const App: () => React$Node = () => {
           ? 'player ' + simple[!queue] + ' win'
           : 'play   ' + simple[queue]}
       </Text>
-      {Object.keys(table).map((row, indexRow) => {
+      {table.map((row, indexRow) => {
         return (
           <View key={indexRow} style={styles.rowTable}>
-            {table[row].map((col, indexCol) => {
+            {row.map((col, indexCol) => {
               return (
                 <Button
                   key={`${indexRow} ${indexCol}`}
