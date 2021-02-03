@@ -76,7 +76,7 @@ const App: () => React$Node = () => {
     <View style={styles.container}>
       <Text>
         {winner
-          ? 'Unable to continue playing ' + simple[!queue] + ' win'
+          ? 'player ' + simple[!queue] + ' win'
           : 'play   ' + simple[queue]}
       </Text>
       {Object.keys(table).map((row, indexRow) => {
