@@ -9,9 +9,7 @@
 import React from 'react';
 import {StyleSheet, View, Button, Text} from 'react-native';
 
-// import Toast from 'react-native-simple-toast';
-
-const App: () => React$Node = () => {
+const App = () => {
   const initTable = [
     [null, null, null],
     [null, null, null],
@@ -20,8 +18,8 @@ const App: () => React$Node = () => {
 
   const simple = {
     null: '-',
-    true: '*',
-    false: '0',
+    true: '❌',
+    false: '◯',
   };
 
   const [table, setTable] = React.useState(initTable);
@@ -30,7 +28,6 @@ const App: () => React$Node = () => {
 
   const pressCell = (row, col) => {
     if (winner) {
-      // Toast.show('Unable to continue playing', Toast.LONG);
       return;
     }
     if (table[row][col] !== null) return;
@@ -68,15 +65,12 @@ const App: () => React$Node = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queue]);
-  // const displaySuccess = () => {
-  //   // Toast.show('success', Toast.LONG);
-  // };
 
   return (
     <View style={styles.container}>
       <Text>
         {winner
-          ? 'player ' + simple[!queue] + ' win'
+          ? '🏆 player ' + simple[!queue] + ' win 	🏆'
           : 'play   ' + simple[queue]}
       </Text>
       {table.map((row, indexRow) => {
@@ -84,7 +78,7 @@ const App: () => React$Node = () => {
           <View key={indexRow} style={styles.rowTable}>
             {row.map((col, indexCol) => {
               return (
-                <View style={styles.cell}>
+                <View style={styles.cell} key={indexCol}>
                   <Button
                     key={`${indexRow} ${indexCol}`}
                     onPress={() => {
